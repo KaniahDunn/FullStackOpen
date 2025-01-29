@@ -20,10 +20,8 @@ sequenceDiagram
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
     activate server
-    server-->>browser: {
-        "content": "gooy ",
-        "date": "2025-01-29T18:46:00.682Z"
-    }
-    server-->>browser: {"message":"note created"}
+    server-->>browser: Note created
     deactivate server
+
+    Note right of server: Response: {"message": "note created"}
 ```
