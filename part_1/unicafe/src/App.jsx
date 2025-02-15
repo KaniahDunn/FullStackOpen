@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import StatisticsCard from "./components/StatisticsCard";
 
 const App = () => {
   const [good, setGood] = useState(0);
@@ -21,46 +22,26 @@ const App = () => {
       <Typography variant='h1' className='text-center p-3' color='white'>
         UniCafe Review Tracker
       </Typography>
-      <div className='grid  grid-cols-3 gap-4'>
-        <Card className='items-center'>
-          <CardBody>
-            <Typography variant='h5' color='blue-gray' className='mb-2'>
-              Good Feedback
-            </Typography>
-            <Typography>{good}</Typography>
-          </CardBody>
-          <CardFooter>
-            <Button color='pink' onClick={goodFeedback}>
-              Give Good Feeback
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className='items-center'>
-          <CardBody>
-            <Typography variant='h5' color='blue-gray' className='mb-2'>
-              Neutral Feedback
-            </Typography>
-            <Typography>{neutral}</Typography>
-          </CardBody>
-          <CardFooter>
-            <Button color='pink' onClick={neutralFeedback}>
-              Give Neutral Feedback
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className='items-center'>
-          <CardBody>
-            <Typography variant='h5' color='blue-gray' className='mb-2'>
-              Bad Feedback
-            </Typography>
-            <Typography>{bad}</Typography>
-          </CardBody>
-          <CardFooter>
-            <Button color='pink' onClick={badFeedback}>
-              Give Bad Feedback
-            </Button>
-          </CardFooter>
-        </Card>
+      <div className='grid grid-cols-3 gap-4'>
+        <StatisticsCard
+          cardTitle={"Good Feedback"}
+          cardRating={good}
+          buttonTitle={"Give Good Feeback"}
+          onClick={goodFeedback}
+        />
+        <StatisticsCard
+          cardTitle={"Neutral Feedback"}
+          cardRating={neutral}
+          buttonTitle={"Give Neutral Feedback"}
+          onClick={neutralFeedback}
+        />
+        <StatisticsCard
+          cardTitle={"Bad Feedback"}
+          cardRating={bad}
+          buttonTitle={"Give Bad Feedback"}
+          onClick={badFeedback}
+        />
+
         <Card className='items-center'>
           <CardBody>
             <Typography variant='h5' color='blue-gray' className='mb-2'>
@@ -68,7 +49,6 @@ const App = () => {
             </Typography>
             <Typography>{good + neutral + bad}</Typography>
           </CardBody>
-          <CardFooter></CardFooter>
         </Card>
         <Card className='items-center'>
           <CardBody>
@@ -81,7 +61,6 @@ const App = () => {
                 : "N/A"}
             </Typography>
           </CardBody>
-          <CardFooter></CardFooter>
         </Card>
         <Card className='items-center'>
           <CardBody>
@@ -94,7 +73,6 @@ const App = () => {
                 : "0%"}
             </Typography>
           </CardBody>
-          <CardFooter></CardFooter>
         </Card>
       </div>
     </div>
