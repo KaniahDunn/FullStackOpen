@@ -7,7 +7,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-function StatisticsCard({ cardTitle, cardRating, buttonTitle, onClick }) {
+function RatingsCard({ cardTitle, cardRating, buttonTitle, onClick }) {
   return (
     <div>
       <Card className='items-center'>
@@ -27,4 +27,4 @@ function StatisticsCard({ cardTitle, cardRating, buttonTitle, onClick }) {
   );
 }
 
-export default StatisticsCard;
+export default RatingsCard;
