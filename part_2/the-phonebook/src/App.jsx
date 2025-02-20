@@ -1,4 +1,7 @@
 import { useState, useCallback } from "react";
+import Filter from "./components/Filter";
+import DirectoryList from "./components/DirectoryList";
+import AddPersonForm from "./components/AddPersonForm";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -45,7 +48,7 @@ const App = () => {
         ]);
         setNewName("");
         setNewPhone("");
-        setErrorMessage(""); // Reset error message after adding person
+        setErrorMessage("");
       }
     },
     [newName, newPhone, persons] // Dependencies of the callback
@@ -53,37 +56,19 @@ const App = () => {
 
   return (
     <div>
-      {/* Show error message on the UI */}
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
       <h2>Phonebook</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          Search: <input value={searchQuery} onChange={handleSearchQuery} />
-        </div>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newPhone} onChange={handlePhoneChange} />
-        </div>
-        <div>
-          <button type='submit'>add</button>
-        </div>
-      </form>
-
+      <Filter searchQuery={searchQuery} onChange={handleSearchQuery} />
+      <AddPersonForm
+        newName={newName}
+        newPhone={newPhone}
+        handleNameChange={handleNameChange}
+        handlePhoneChange={handlePhoneChange}
+        addPerson={addPerson}
+      />
       <h2>Numbers</h2>
-      <ul>
-        {persons
-          .filter((person) =>
-            person.name.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-          .map((person) => (
-            <li key={person.id}>
-              {person.name}: {person.number}
-            </li>
-          ))}
-      </ul>
+      <DirectoryList persons={persons} searchQuery={searchQuery} />
     </div>
   );
 };
