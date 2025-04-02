@@ -3,6 +3,7 @@ import Filter from "./components/Filter";
 import DirectoryList from "./components/DirectoryList";
 import AddPersonForm from "./components/AddPersonForm";
 import axios from "axios";
+import contactsService from "./services/contactsService";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -10,14 +11,6 @@ const App = () => {
   const [newPhone, setNewPhone] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      console.log("promise fulfilled");
-      setPersons(response.data);
-    });
-  }, []);
 
   const handleNameChange = (event) => {
     setNewName(event.target.value);
@@ -30,6 +23,16 @@ const App = () => {
   const handleSearchQuery = (event) => {
     setSearchQuery(event.target.value);
   };
+
+  
+
+  useEffect(() => {
+    contactsService.getAll().then(persons => {
+      setPersons(persons)
+    })
+  }, []);
+
+ 
 
   // Memoize addPerson using useCallback to avoid unnecessary re-renders
   const addPerson = useCallback(
